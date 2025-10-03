@@ -1,6 +1,6 @@
 import { openai } from "@ai-sdk/openai";
 import { Agent } from "@mastra/core/agent";
-import { weatherTool, fileUploadTool, createPageTool, processFileTool } from "@/mastra/tools";
+import { weatherTool, fileUploadTool, createPageTool, processFileTool } from "../tools";
 import { LibSQLStore } from "@mastra/libsql";
 import { z } from "zod";
 import { Memory } from "@mastra/memory";
@@ -22,7 +22,9 @@ IMPORTANT CAPABILITIES:
 
 PAGE CREATION: When users want to create a page, ask them what type of page they want and what they'd like to call it. Then use createPageTool.
 
-FILE PROCESSING: When users upload files and want them processed, use processFileTool with their specific prompt.`,
+FILE PROCESSING: When users upload files and want them processed, use processFileTool with their specific prompt.
+
+NOTE: All tools now use n8n workflows for execution.`,
   memory: new Memory({
     storage: new LibSQLStore({ url: "file::memory:" }),
     options: {
